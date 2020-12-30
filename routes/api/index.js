@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const mockRoutes = require("./mocks");
+const userRoutes = require("./users");
 
-// mock routes
-router.use("/mocks", mockRoutes);
+// user routes
+router.use("/users", userRoutes);
 
 module.exports = router;
