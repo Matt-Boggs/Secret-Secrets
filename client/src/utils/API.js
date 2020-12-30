@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all Mocks
-  getMocks: function() {
-    return axios.get("/api/mocks");
+  // Gets all Users
+  getUsers: function() {
+    return axios.get("/api/users");
   },
-  // Gets the Mock with the given id
-  getMock: function(id) {
-    return axios.get("/api/mocks/" + id);
+  // Gets the User with the given id
+  getUser: function(id) {
+    return axios.get("/api/users/" + id);
   },
-  // Deletes the Mock with the given id
-  deleteMock: function(id) {
-    return axios.delete("/api/mocks/" + id);
+  // Deletes the User with the given id
+  deleteUser: function(id) {
+    return axios.delete("/api/users/" + id);
   },
-  // Saves a Mock to the database
-  saveMock: function(mockData) {
-    return axios.post("/api/mocks", mockData);
+  // Saves a User to the database
+  saveUser: function(userData) {
+    return axios.post("/api/users", userData);
   }
 };
