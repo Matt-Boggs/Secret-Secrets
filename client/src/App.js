@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Mocks from "./pages/Mocks";
 import Detail from "./pages/Detail";
+import Users from "./pages/Example"
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
@@ -11,11 +12,14 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path={["/", "/mocks"]}>
+          {/* <Route exact path={["/", "/mocks"]}>
             <Mocks />
           </Route>
           <Route exact path="/mocks/:id">
             <Detail />
+          </Route> */}
+          <Route exact path="/">
+            <Users />
           </Route>
           <Route>
             <NoMatch />
