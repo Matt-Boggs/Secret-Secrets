@@ -10,7 +10,6 @@ mongoose.connect(
 
 const userSeed = [
   {
-    _id: 1,
     name: "Matt",
     secrets: [
       {
@@ -22,7 +21,6 @@ const userSeed = [
     ]
   },
   {
-    _id: 2,
     name: "John",
     secrets: [
       {
