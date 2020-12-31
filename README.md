@@ -1,3 +1,3 @@
 # Secret-Secrets
 
-An exercise in database's and interacting collections
+An exercise in databases and interacting collections
