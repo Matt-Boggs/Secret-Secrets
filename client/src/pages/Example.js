@@ -6,9 +6,11 @@ import "./example.css"
 
 const Example = ()=>{
     const [users, setUsers] = useState([])
+    const [secrets, setSecrets] = useState([])
     
     useEffect(()=>{
-        loadUsers()
+        loadUsers();
+        loadSecrets()
     },[]);
 
     const loadUsers = ()=>{
@@ -17,6 +19,14 @@ const Example = ()=>{
             setUsers(res.data)
         }).catch(err=>console.log(err))
     };
+    
+    const loadSecrets = ()=>{
+        API.getSecrets()
+        .then(res =>{
+            console.log(res.data)
+            // setSecrets(res.data)
+        }).catch(err=>console.log(err))
+    }
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
@@ -42,10 +52,9 @@ const Example = ()=>{
                         <ul>
                             {users.map(user => (
                                 <div className="col-12" key={user._id}>
-                                    <button className="collapsible" >
+                                    <button className="userBtn" >
                                         {user.name}
                                     </button>
-                                    <div className="content"><span> lorem ipsem</span></div>
                                 </div>
                             ))}
                         </ul>
@@ -54,12 +63,12 @@ const Example = ()=>{
                 </Col>
                 <Col size = "md-9">
                     <Row>
-                        <Col size="12">
+                        {/* <Col size="12">
                             <button className="collapsible"><h1>Info</h1></button>
                             <div className="content">
                                 <span>lorem ipsum</span>
                             </div>    
-                        </Col>
+                        </Col> */}
                         <Col size="12">
                             <div className="card">
                                 <h1 className="card-header">Info</h1>
