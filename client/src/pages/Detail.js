@@ -6,16 +6,24 @@ import API from "../utils/API";
 
 function Detail(props) {
   const [user, setUser] = useState({})
+  const [secrets, setSecrets] = useState([])
 
-  // When this component mounts, grab the mock with the _id of props.match.params.id
-  // e.g. localhost:3000/mocks/599dcb67f0f16317844583fc
   const {id} = useParams()
-  console.log(id)
+
   useEffect(() => {
     API.getUser(id)
+      .then(res => setUser(res.data))
+      .catch(err => console.log(err));
+    API.getSecrets()
       .then(res => {
-        console.log(res.data)
-        setUser(res.data)
+        let newArr = []
+        // ===== ONLY SECRETS THAT HAVE THE USER ID IN THE ACCESS LIST WILL BE DISPLAYED
+        res.data.forEach(secret => {
+          if(secret.access.includes(id)){
+            newArr.push(secret.secret)
+          }
+        });
+        setSecrets(newArr)
       })
       .catch(err => console.log(err));
   }, [])
@@ -32,14 +40,15 @@ function Detail(props) {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>other2</h1>
-              <p>
-                {/* {mock.other2} */} Example
-              </p>
-            </article>
-          </Col>
+          {secrets.map(secret => (
+              <Col size="md-10 md-offset-1">
+                <article>
+                  
+                  <h1>{secret}</h1>
+                  
+                </article>
+              </Col>
+          ))}
         </Row>
         <Row>
           <Col size="md-2">
