@@ -10,16 +10,13 @@ mongoose.connect(
 
 const userSeed = [
   {
-    name: "Matt",
-    _id: 1
+    name: "Matt"
   },
   {
-    name: "John",
-    _id: 2
+    name: "John"
   },
   {
     name: "Jill"
-    // 'Jill' will have an objectID
   }
   
 ];
