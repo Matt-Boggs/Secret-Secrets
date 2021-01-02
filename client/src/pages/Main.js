@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Col, Container, Row } from "../components/Grid";
 import API from "../utils/API";
-import "./example.css"
+import "./main.css"
 
 
-const Example = ()=>{
+const Main = ()=>{
     const [users, setUsers] = useState([])
     const [secrets, setSecrets] = useState([])
     
@@ -23,25 +24,26 @@ const Example = ()=>{
     const loadSecrets = ()=>{
         API.getSecrets()
         .then(res =>{
-            console.log(res.data)
-            // setSecrets(res.data)
+            // console.log(res.data)
+            setSecrets(res.data)
         }).catch(err=>console.log(err))
     }
+        // ===========COLLAPSIBLE CODE =======================
+    // var coll = document.getElementsByClassName("collapsible");
+    // var i;
 
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-            content.style.display = "none";
-            } else {
-            content.style.display = "block";
-            }
-        });
-    }
+    // for (i = 0; i < coll.length; i++) {
+    //     coll[i].addEventListener("click", function() {
+    //         this.classList.toggle("active");
+    //         var content = this.nextElementSibling;
+    //         if (content.style.display === "block") {
+    //         content.style.display = "none";
+    //         } else {
+    //         content.style.display = "block";
+    //         }
+    //     });
+    // }
+        // ===========COLLAPSIBLE CODE =======================
 
     return (
         <Container fluid>
@@ -52,9 +54,12 @@ const Example = ()=>{
                         <ul>
                             {users.map(user => (
                                 <div className="col-12" key={user._id}>
-                                    <button className="userBtn" >
-                                        {user.name}
-                                    </button>
+                                    <Link to={"/users/" + user._id}>
+                                        <button className="userBtn">
+                                            {user.name}
+                                            
+                                        </button>
+                                    </Link>
                                 </div>
                             ))}
                         </ul>
@@ -90,4 +95,4 @@ const Example = ()=>{
 
 }
 
-export default Example
+export default Main
