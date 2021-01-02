@@ -5,14 +5,18 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
 function Detail(props) {
-  const [mock, setMock] = useState({})
+  const [user, setUser] = useState({})
 
   // When this component mounts, grab the mock with the _id of props.match.params.id
   // e.g. localhost:3000/mocks/599dcb67f0f16317844583fc
   const {id} = useParams()
+  console.log(id)
   useEffect(() => {
-    API.getMock(id)
-      .then(res => setMock(res.data))
+    API.getUser(id)
+      .then(res => {
+        console.log(res.data)
+        setUser(res.data)
+      })
       .catch(err => console.log(err));
   }, [])
 
@@ -22,7 +26,7 @@ function Detail(props) {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                {mock.name}
+                {user.name}
               </h1>
             </Jumbotron>
           </Col>
