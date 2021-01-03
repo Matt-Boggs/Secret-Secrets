@@ -4,7 +4,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
-function Detail(props) {
+function Detail() {
   const [user, setUser] = useState({})
   const [secrets, setSecrets] = useState([])
 
