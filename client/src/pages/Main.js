@@ -51,18 +51,16 @@ const Main = ()=>{
                 <Col size="md-3">
                     <div className="userList">
                     <Row>
-                        <ul>
-                            {users.map(user => (
-                                <div className="col-12" key={user._id}>
-                                    <Link to={"/users/" + user._id}>
-                                        <button className="userBtn">
-                                            {user.name}
-                                            
-                                        </button>
-                                    </Link>
-                                </div>
-                            ))}
-                        </ul>
+                        {users.map(user => (
+                            <div className="userBtnContainer col-12" key={user._id}>
+                                <Link to={"/users/" + user._id}>
+                                    <button className="userBtn btn-danger">
+                                        {user.name}
+                                        
+                                    </button>
+                                </Link>
+                            </div>
+                        ))}
                     </Row>
                     </div>
                 </Col>
