@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "../components/Grid";
+import {Input, FormBtn, TextArea} from "../components/Form"
 import API from "../utils/API";
 import "./main.css"
 
@@ -39,13 +40,13 @@ const Main = ()=>{
     const handleFormSubmit = (event)=>{
         event.preventDefault();
         if (formObject.name) {
-          API.saveMock({
-            name: formObject.name
-            // other: formObject.other,
-            // other2: formObject.other2
-          })
-            .then(res => loadMocks())
-            .catch(err => console.log(err));
+        //   API.saveMock({
+        //     name: formObject.name,
+        //     other: formObject.other,
+        //     other2: formObject.other2
+        //   })
+            // .then(res => loadMocks())
+            // .catch(err => console.log(err));
         }
     };
         // ===========COLLAPSIBLE CODE =======================
