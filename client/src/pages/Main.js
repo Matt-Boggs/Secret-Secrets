@@ -38,15 +38,18 @@ const Main = ()=>{
     };
 
     const handleFormSubmit = (event)=>{
-        event.preventDefault();
+        // event.preventDefault();
         if (formObject.name) {
-        //   API.saveMock({
-        //     name: formObject.name,
+          API.saveUser({
+            name: formObject.name
         //     other: formObject.other,
         //     other2: formObject.other2
-        //   })
-            // .then(res => loadMocks())
-            // .catch(err => console.log(err));
+          })
+            .then(res => {
+                console.log(res.data)
+                // loadMocks()
+            })
+            .catch(err => console.log(err));
         }
     };
         // ===========COLLAPSIBLE CODE =======================
@@ -108,7 +111,7 @@ const Main = ()=>{
                                 disabled={!(formObject.name)}
                                 onClick={handleFormSubmit}
                                 >
-                                Submit Mock
+                                Create new user
                                 </FormBtn>
                             </form>
                         </Col>
