@@ -8,6 +8,8 @@ import "./main.css"
 const Main = ()=>{
     const [users, setUsers] = useState([])
     const [secrets, setSecrets] = useState([])
+    const [formObject, setFormObject] = useState({})
+
     
     useEffect(()=>{
         loadUsers();
@@ -28,6 +30,24 @@ const Main = ()=>{
             setSecrets(res.data)
         }).catch(err=>console.log(err))
     }
+
+    const handleInputChange = (event)=>{
+        const { name, value } = event.target;
+        setFormObject({...formObject, [name]: value})
+    };
+
+    const handleFormSubmit = (event)=>{
+        event.preventDefault();
+        if (formObject.name) {
+          API.saveMock({
+            name: formObject.name
+            // other: formObject.other,
+            // other2: formObject.other2
+          })
+            .then(res => loadMocks())
+            .catch(err => console.log(err));
+        }
+    };
         // ===========COLLAPSIBLE CODE =======================
     // var coll = document.getElementsByClassName("collapsible");
     // var i;
@@ -66,17 +86,30 @@ const Main = ()=>{
                 </Col>
                 <Col size = "md-9">
                     <Row>
-                        {/* <Col size="12">
-                            <button className="collapsible"><h1>Info</h1></button>
-                            <div className="content">
-                                <span>lorem ipsum</span>
-                            </div>    
-                        </Col> */}
                         <Col size="12">
-                            <div className="card">
-                                <h1 className="card-header">Info</h1>
-                                <span className="card-body">lorem ipsum</span>
-                            </div>
+                            <form>
+                                <Input
+                                onChange={handleInputChange}
+                                name="name"
+                                placeholder="name (required)"
+                                />
+                                {/* <Input
+                                onChange={handleInputChange}
+                                name="other"
+                                placeholder="other (required)"
+                                />
+                                <TextArea
+                                onChange={handleInputChange}
+                                name="other2"
+                                placeholder="other2 (Optional)"
+                                /> */}
+                                <FormBtn
+                                disabled={!(formObject.name)}
+                                onClick={handleFormSubmit}
+                                >
+                                Submit Mock
+                                </FormBtn>
+                            </form>
                         </Col>
                         <Col size="12">
                             <div className="card">
