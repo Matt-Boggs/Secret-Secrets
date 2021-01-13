@@ -12,17 +12,17 @@ const Main = ()=>{
     const [formObject, setFormObject] = useState({})
 
     
-    useEffect(()=>{
-        loadUsers();
-        loadSecrets()
-    },[]);
+    // useEffect(()=>{
+    //     loadUsers();
+    //     loadSecrets()
+    // },[]);
 
-    const loadUsers = ()=>{
-        API.getUsers()
-        .then(res =>{
-            setUsers(res.data)
-        }).catch(err=>console.log(err))
-    };
+    // const loadUsers = ()=>{
+    //     API.getUsers()
+    //     .then(res =>{
+    //         setUsers(res.data)
+    //     }).catch(err=>console.log(err))
+    // };
     
     const loadSecrets = ()=>{
         API.getSecrets()
@@ -39,11 +39,12 @@ const Main = ()=>{
 
     const handleFormSubmit = (event)=>{
         // event.preventDefault();
-        if (formObject.name) {
-          API.saveUser({
-            name: formObject.name
-        //     other: formObject.other,
-        //     other2: formObject.other2
+        if (formObject.email) {
+          API.register({
+            email: formObject.email,
+            password: formObject.password,
+            passwordCheck: formObject.passwordCheck,
+            displayName: formObject.displayName
           })
             .then(res => {
                 console.log(res.data)
@@ -75,7 +76,7 @@ const Main = ()=>{
                 <Col size="md-3">
                     <div className="userList">
                     <Row>
-                        {users.map(user => (
+                        {/* {users.map(user => (
                             <div className="userBtnContainer col-12" key={user._id}>
                                 <Link to={"/users/" + user._id}>
                                     <button className="userBtn btn-danger">
@@ -84,7 +85,7 @@ const Main = ()=>{
                                     </button>
                                 </Link>
                             </div>
-                        ))}
+                        ))} */}
                     </Row>
                     </div>
                 </Col>
@@ -94,21 +95,26 @@ const Main = ()=>{
                             <form>
                                 <Input
                                 onChange={handleInputChange}
-                                name="name"
-                                placeholder="name (required)"
+                                name="email"
+                                placeholder="email (required)"
                                 />
-                                {/* <Input
+                                <Input
                                 onChange={handleInputChange}
-                                name="other"
-                                placeholder="other (required)"
+                                name="password"
+                                placeholder="password (required)"
                                 />
-                                <TextArea
+                                <Input
                                 onChange={handleInputChange}
-                                name="other2"
-                                placeholder="other2 (Optional)"
-                                /> */}
+                                name="passwordCheck"
+                                placeholder="Enter same password (required)"
+                                />
+                                <Input
+                                onChange={handleInputChange}
+                                name="displayName"
+                                placeholder="display Name"
+                                />
                                 <FormBtn
-                                disabled={!(formObject.name)}
+                                disabled={!(formObject.email) || !(formObject.password) || !(formObject.passwordCheck)}
                                 onClick={handleFormSubmit}
                                 >
                                 Create new user

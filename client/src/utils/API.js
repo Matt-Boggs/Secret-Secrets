@@ -30,5 +30,14 @@ export default {
   },
   saveSecret: function(secretData) {
     return axios.post("/api/secrets", secretData);
+  },
+
+  // ===============================================
+
+  register: function(userData){
+    return axios.post("/api/users/register", userData)
+  },
+  login: function(userData){
+    return axios.post("/api/users/login", userData)
   }
 };
